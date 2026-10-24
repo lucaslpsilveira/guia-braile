@@ -97,8 +97,8 @@
       if (ultimo.nome === chave && agora - ultimo.quando < 500) return;
       ultimo = { nome: chave, quando: agora };
       if (el.dataset.audio) GB.audio.narrar(el.dataset.audio);
-      else if (introEmCurso) {
-        // A introdução da página ainda está sendo falada: a frase do foco espera o fim dela
+      else if (introEmCurso && el.classList.contains('pular-conteudo')) {
+        // Só o link "Pular para o conteúdo" espera a introdução terminar; os demais a interrompem
         introEmCurso.then(() => {
           if (document.activeElement === el) GB.audio.falar(el.dataset.fala.split('|'));
         });
