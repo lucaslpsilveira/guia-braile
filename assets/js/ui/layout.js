@@ -60,7 +60,8 @@
     if (!alvo) return;
     alvo.outerHTML =
       '<footer class="site-footer"><div class="container">' +
-      '<p>Contato: <a href="mailto:GuiaBraille@gmail.com">GuiaBraille@gmail.com</a></p>' +
+      '<p>Contato: <a href="mailto:lucas.lpsilveira@gmail.com">lucas.lpsilveira@gmail.com</a></p>' +
+      '<p>WhatsApp: <a href="https://wa.me/5551996430214" target="_blank" rel="noopener">(51) 99643-0214</a></p>' +
       '<p>Brasil | Rio Grande do Sul | Instituto Federal Sul-Rio-Grandense, Campus Charqueadas</p>' +
       '<p class="copyright">© 2014 Guia Braille</p>' +
       '</div></footer>';
