@@ -25,6 +25,7 @@
 
     editor.addEventListener('keydown', e => {
       if (e.ctrlKey || e.altKey || e.metaKey) return;
+      GB.audio.parar('info');           // quem já sabe usar pode digitar sem esperar a instrução terminar
       const som = GB.braille.somDaTecla(e);
       if (som) GB.audio.efeito(som);
       const c = GB.braille.caractereDaTecla(e);

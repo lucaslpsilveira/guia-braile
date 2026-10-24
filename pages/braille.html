@@ -52,9 +52,9 @@
       <div class="container pratica">
         <h2 id="pratica-t">Veja na prática</h2>
         <p>Procure alguma simbologia em Braille no seu teclado adaptado e pressione para descobrir a qual letra ela corresponde. No celular, use o teclado de 6 pontos abaixo.</p>
-        <button type="button" class="btn secundario btn-ouvir" data-fala="Veja na prática. Procure alguma simbologia em Braille no seu teclado adaptado e pressione para descobrir a qual letra ela corresponde. No celular, use o teclado de seis pontos abaixo: toque nos pontos e confirme.">Ouvir as instruções</button>
+        <button type="button" class="btn secundario btn-ouvir" tabindex="-1" data-fala="Veja na prática. Procure alguma simbologia em Braille no seu teclado adaptado e pressione para descobrir a qual letra ela corresponde. No celular, use o teclado de seis pontos abaixo: toque nos pontos e confirme.">Ouvir as instruções</button>
         <label for="editor" class="sr-only">Área de prática</label>
-        <textarea id="editor" rows="3" spellcheck="false" autocomplete="off" aria-describedby="pratica-aviso"></textarea>
+        <textarea id="editor" data-fala="Área de prática. Procure alguma simbologia em Braille no seu teclado adaptado e pressione para descobrir a qual letra ela corresponde. No celular, use o teclado de seis pontos abaixo: toque nos pontos e confirme." rows="3" spellcheck="false" autocomplete="off" aria-describedby="pratica-aviso"></textarea>
         <div class="pratica-resultado">
           <div class="pratica-letra" id="pratica-letra" aria-hidden="true">?</div>
           <div id="pratica-cela"></div>
