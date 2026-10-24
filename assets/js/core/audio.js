@@ -91,17 +91,26 @@
       return tocar(nome, 'info');
     },
     // Fala um texto com a voz do navegador. Obedece ao botão de narração.
-    falar(texto) {
-      if (!narracaoLigada || !fala || !texto) return;
-      sequencias.info++;
-      pararCanal('info');
-      pararFala();
-      const fala1 = new SpeechSynthesisUtterance(texto);
-      fala1.lang = 'pt-BR';
-      const voz = vozPortuguesa();
-      if (voz) fala1.voice = voz;
-      fala.speak(fala1);
+    // Com { fila: true } espera a fala atual terminar em vez de interrompê-la.
+    // Resolve com: 'fim' | 'bloqueado' (sem interação do usuário ainda) | 'erro' | 'desligado'
+    falar(texto, opcoes) {
+      return new Promise(resolver => {
+        if (!narracaoLigada || !fala || !texto) { resolver('desligado'); return; }
+        if (!(opcoes && opcoes.fila)) {
+          sequencias.info++;
+          pararCanal('info');
+          pararFala();
+        }
+        const fala1 = new SpeechSynthesisUtterance(texto);
+        fala1.lang = 'pt-BR';
+        const voz = vozPortuguesa();
+        if (voz) fala1.voice = voz;
+        fala1.onend = () => resolver('fim');
+        fala1.onerror = e => resolver(e && e.error === 'not-allowed' ? 'bloqueado' : 'erro');
+        fala.speak(fala1);
+      });
     },
+    introFalando: false,
     efeito(nome) {
       sequencias.fx++;
       return tocar(nome, 'fx');

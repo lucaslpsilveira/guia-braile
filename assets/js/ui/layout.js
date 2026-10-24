@@ -88,7 +88,8 @@
       if (ultimo.nome === chave && agora - ultimo.quando < 500) return;
       ultimo = { nome: chave, quando: agora };
       if (el.dataset.audio) GB.audio.narrar(el.dataset.audio);
-      else GB.audio.falar(el.dataset.fala);
+      // Se a introdução da página ainda está sendo falada, a frase do foco entra na fila
+      else GB.audio.falar(el.dataset.fala, { fila: GB.audio.introFalando });
     };
 
     document.addEventListener('focusin', e => {
@@ -101,7 +102,7 @@
     });
   }
 
-  // Atalhos: Alt+1 vai para o menu; Alt+R volta ao ponto onde o foco estava antes.
+  // Atalhos: Alt+1 ou Alt+I vão para o menu; Alt+R volta ao ponto onde o foco estava antes.
   function ligarAtalhos() {
     const FOCAVEIS = 'a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]';
     let anterior = null;
@@ -147,12 +148,28 @@
     // event.code vale para qualquer layout de teclado (com Alt, event.key pode mudar)
     document.addEventListener('keydown', e => {
       if (!e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-      if (e.code === 'Digit1' || e.code === 'Numpad1') { e.preventDefault(); irParaMenu(); }
+      if (e.code === 'Digit1' || e.code === 'Numpad1' || e.code === 'KeyI') { e.preventDefault(); irParaMenu(); }
       else if (e.code === 'KeyR') { e.preventDefault(); voltar(); }
     });
   }
 
   function tocarIntroducao() {
+    // Introdução falada com a voz do navegador (sem MP3)
+    const texto = document.body.dataset.introFala;
+    if (texto) {
+      const dizer = () => {
+        GB.audio.introFalando = true;
+        return GB.audio.falar(texto).then(resultado => {
+          GB.audio.introFalando = false;
+          return resultado;
+        });
+      };
+      dizer().then(resultado => {
+        if (resultado === 'bloqueado') GB.audio.aoPrimeiroGesto(dizer);
+      });
+      return;
+    }
+
     const intro = document.body.dataset.intro;
     if (!intro) return;
     GB.audio.narrar(intro).then(resultado => {
