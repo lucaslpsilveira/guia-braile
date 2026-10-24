@@ -36,6 +36,9 @@
   <script src="../assets/js/games/matematica.js"></script>
   <script>
     document.addEventListener('keydown', e);
+    GB.audio.efeito('letras/introsoma').then(function (r) {
+      if (r === 'bloqueado') GB.audio.aoPrimeiroGesto(function () { tocarSom('introsoma'); });
+    });
   </script>
 </body>
 </html>
