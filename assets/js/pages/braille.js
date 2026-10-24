@@ -37,7 +37,10 @@
       const rotulo = document.createElement('span');
       rotulo.textContent = l.toUpperCase();
       const pontos = GB.braille.pontosDaLetra(l);
-      li.setAttribute('aria-label', 'Letra ' + l.toUpperCase() + ': pontos ' + pontos.join(', '));
+      const descricao = 'Letra ' + l.toUpperCase() + ': ' + GB.braille.descreverPontos(pontos);
+      li.setAttribute('aria-label', descricao);
+      li.tabIndex = 0;                  // com Tab, cada letra é falada
+      li.dataset.fala = descricao;
       li.append(GB.braille.criarCela(pontos, false), rotulo);
       grade.appendChild(li);
     });
@@ -47,7 +50,11 @@
       fisico: false,
       aoConfirmar: pontos => {
         const c = GB.braille.interpretar(pontos, false);
-        if (!c) { aviso.textContent = 'Essa combinação de pontos não é uma letra.'; return; }
+        if (!c) {
+          aviso.textContent = 'Essa combinação de pontos não é uma letra.';
+          GB.audio.falar(aviso.textContent);
+          return;
+        }
         editor.value += c;
         GB.audio.efeito(GB.braille.somDoCaractere(c));
         mostrar(c);

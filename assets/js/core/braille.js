@@ -53,6 +53,12 @@
 
     pontosDaLetra(letra) { return LETRAS[letra] || []; },
 
+    // Ex.: [1] -> "ponto 1"; [1, 2, 5] -> "pontos 1, 2 e 5"
+    descreverPontos(pontos) {
+      if (pontos.length === 1) return 'ponto ' + pontos[0];
+      return 'pontos ' + pontos.slice(0, -1).join(', ') + ' e ' + pontos[pontos.length - 1];
+    },
+
     // pontos -> letra (ou dígito, em modo numérico). Retorna null se não existir
     interpretar(pontos, numerico) {
       const letra = POR_PONTOS[chave(pontos)];

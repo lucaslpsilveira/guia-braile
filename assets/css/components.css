@@ -159,7 +159,8 @@ a.card-jogo:hover { transform: translateY(-3px); box-shadow: var(--sombra); bord
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
-.ponto-btn small { display: block; font-size: .75rem; font-weight: 500; opacity: .75; }
+.ponto-btn small { display: none; font-size: .75rem; font-weight: 500; opacity: .75; }
+.com-teclas .ponto-btn small { display: block; }
 .ponto-btn[aria-pressed="true"] {
   background: var(--vermelho);
   border-color: var(--vermelho-escuro);

@@ -52,7 +52,7 @@
 }
 .menu-toggle:hover,
 .btn-narracao:hover { background: rgba(255, 255, 255, .15); }
-.btn-narracao[aria-pressed="false"] { opacity: .75; text-decoration: line-through; }
+.btn-narracao { display: inline-flex; align-items: center; gap: 8px; }
 
 .nav-principal { display: none; width: 100%; order: 10; }
 .nav-principal.aberto { display: block; }
@@ -79,7 +79,7 @@
 .site-header .container { flex-wrap: wrap; }
 
 @media (max-width: 520px) {
-  .btn-narracao .rotulo { display: none; }
+  .btn-narracao { font-size: .9rem; padding: 0 10px; }
   .marca { font-size: 1.2rem; }
 }
 

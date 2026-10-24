@@ -19,6 +19,7 @@
     let desabilitado = false;
 
     raiz.classList.add('teclado-braille');
+    raiz.classList.toggle('com-teclas', fisico);
     raiz.innerHTML =
       '<div class="teclado-pontos" role="group" aria-label="Pontos Braille"></div>' +
       '<div class="teclado-acoes">' +
@@ -96,7 +97,11 @@
 
     return {
       limpar,
-      definirFisico(ativo) { fisico = !!ativo; limpar(); },
+      definirFisico(ativo) {
+        fisico = !!ativo;
+        raiz.classList.toggle('com-teclas', fisico);
+        limpar();
+      },
       definirDesabilitado(valor) {
         desabilitado = !!valor;
         raiz.querySelectorAll('button').forEach(b => { b.disabled = desabilitado; });

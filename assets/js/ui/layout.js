@@ -28,7 +28,7 @@
       '<header class="site-header"><div class="container">' +
       '<a class="marca" href="' + base + 'index.html" data-audio="menu/audio1">' +
       '<img src="' + base + 'assets/img/logo.png" alt="" width="44" height="44"><span>Guia Braille</span></a>' +
-      '<button type="button" class="btn-narracao" aria-pressed="true" aria-label="Narração das páginas" title="Liga ou desliga a narração das páginas">🔊<span class="rotulo"> Narração</span></button>' +
+      '<button type="button" class="btn-narracao"><span class="icone" aria-hidden="true"></span><span class="rotulo"></span></button>' +
       '<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav-principal">Menu</button>' +
       '<nav class="nav-principal" id="nav-principal" aria-label="Principal"><ul>' + itens + '</ul></nav>' +
       '</div></header>';
@@ -41,8 +41,11 @@
     });
 
     const botaoNarracao = document.querySelector('.btn-narracao');
+    // O texto do botão diz a ação que o clique vai fazer
     const atualizarNarracao = () => {
-      botaoNarracao.setAttribute('aria-pressed', String(GB.audio.narracaoLigada()));
+      const ligada = GB.audio.narracaoLigada();
+      botaoNarracao.querySelector('.icone').textContent = ligada ? '🔊' : '🔇';
+      botaoNarracao.querySelector('.rotulo').textContent = ligada ? 'Desativar narração' : 'Ativar narração';
     };
     atualizarNarracao();
     botaoNarracao.addEventListener('click', () => {
@@ -76,21 +79,24 @@
   // Narração ao focar um elemento com data-audio (e ao clicar nos botões "Ouvir")
   function ligarNarracaoPorFoco() {
     let ultimo = { nome: '', quando: 0 };
-    const narrar = nome => {
+    // data-audio="pasta/arquivo" toca um MP3; data-fala="texto" fala com a voz do navegador
+    const narrar = el => {
+      const chave = el.dataset.audio || el.dataset.fala;
       const agora = Date.now();
       // Clique de mouse dispara foco e clique quase juntos: evita tocar duas vezes
-      if (ultimo.nome === nome && agora - ultimo.quando < 500) return;
-      ultimo = { nome: nome, quando: agora };
-      GB.audio.narrar(nome);
+      if (ultimo.nome === chave && agora - ultimo.quando < 500) return;
+      ultimo = { nome: chave, quando: agora };
+      if (el.dataset.audio) GB.audio.narrar(el.dataset.audio);
+      else GB.audio.falar(el.dataset.fala);
     };
 
     document.addEventListener('focusin', e => {
-      const el = e.target.closest && e.target.closest('[data-audio]');
-      if (el) narrar(el.dataset.audio);
+      const el = e.target.closest && e.target.closest('[data-audio], [data-fala]');
+      if (el) narrar(el);
     });
     document.addEventListener('click', e => {
       const el = e.target.closest && e.target.closest('.btn-ouvir');
-      if (el) narrar(el.dataset.audio);
+      if (el) narrar(el);
     });
   }
 

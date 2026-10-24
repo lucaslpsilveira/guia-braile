@@ -20,6 +20,19 @@
   const canais = { info: null, fx: null };
   const sequencias = { info: 0, fx: 0 };
 
+  // Voz sintetizada do navegador (speechSynthesis), usada onde não há MP3 gravado
+  const fala = 'speechSynthesis' in window ? window.speechSynthesis : null;
+
+  function vozPortuguesa() {
+    const vozes = fala.getVoices();
+    const norm = v => v.lang.replace('_', '-').toLowerCase();
+    return vozes.find(v => norm(v) === 'pt-br') || vozes.find(v => norm(v).indexOf('pt') === 0) || null;
+  }
+
+  function pararFala() {
+    if (fala) fala.cancel();
+  }
+
   function pararCanal(canal) {
     const atual = canais[canal];
     if (!atual) return;
@@ -73,8 +86,21 @@
   GB.audio = {
     narrar(nome) {
       if (!narracaoLigada) return Promise.resolve('desligado');
+      pararFala();
       sequencias.info++;
       return tocar(nome, 'info');
+    },
+    // Fala um texto com a voz do navegador. Obedece ao botão de narração.
+    falar(texto) {
+      if (!narracaoLigada || !fala || !texto) return;
+      sequencias.info++;
+      pararCanal('info');
+      pararFala();
+      const fala1 = new SpeechSynthesisUtterance(texto);
+      fala1.lang = 'pt-BR';
+      const voz = vozPortuguesa();
+      if (voz) fala1.voice = voz;
+      fala.speak(fala1);
     },
     efeito(nome) {
       sequencias.fx++;
@@ -84,12 +110,13 @@
     parar(canal) {
       if (canal) parar(canal);
       else { parar('info'); parar('fx'); }
+      if (!canal || canal === 'info') pararFala();
     },
     narracaoLigada() { return narracaoLigada; },
     definirNarracao(ligada) {
       narracaoLigada = ligada;
       store.set('gb-narracao', ligada ? 'on' : 'off');
-      if (!ligada) parar('info');
+      if (!ligada) { parar('info'); pararFala(); }
     },
     // Navegadores bloqueiam áudio antes da primeira interação: tenta de novo no primeiro gesto
     aoPrimeiroGesto(funcao) {
