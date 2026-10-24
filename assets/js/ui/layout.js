@@ -7,6 +7,7 @@
 
   const base = document.documentElement.dataset.base || '';
   const paginaAtual = document.body.dataset.page || '';
+  let introEmCurso = null;   // promessa da introdução falada, enquanto ela estiver sendo dita
 
   const MENU = [
     { id: 'projeto', texto: 'Projeto', href: 'pages/projeto.html', audio: 'menu/audio2' },
@@ -82,14 +83,18 @@
     let ultimo = { nome: '', quando: 0 };
     // data-audio="pasta/arquivo" toca um MP3; data-fala="texto" fala com a voz do navegador
     const narrar = el => {
-      const chave = el.dataset.audio || el.dataset.fala;
+      const chave = el.dataset.audio || el.dataset.fala;   // frases de uma fala podem vir separadas por |
       const agora = Date.now();
       // Clique de mouse dispara foco e clique quase juntos: evita tocar duas vezes
       if (ultimo.nome === chave && agora - ultimo.quando < 500) return;
       ultimo = { nome: chave, quando: agora };
       if (el.dataset.audio) GB.audio.narrar(el.dataset.audio);
-      // Se a introdução da página ainda está sendo falada, a frase do foco entra na fila
-      else GB.audio.falar(el.dataset.fala, { fila: GB.audio.introFalando });
+      else if (introEmCurso) {
+        // A introdução da página ainda está sendo falada: a frase do foco espera o fim dela
+        introEmCurso.then(() => {
+          if (document.activeElement === el) GB.audio.falar(el.dataset.fala.split('|'));
+        });
+      } else GB.audio.falar(el.dataset.fala.split('|'));
     };
 
     document.addEventListener('focusin', e => {
@@ -158,11 +163,11 @@
     const texto = document.body.dataset.introFala;
     if (texto) {
       const dizer = () => {
-        GB.audio.introFalando = true;
-        return GB.audio.falar(texto).then(resultado => {
-          GB.audio.introFalando = false;
+        introEmCurso = GB.audio.falar(texto.split('|')).then(resultado => {
+          introEmCurso = null;
           return resultado;
         });
+        return introEmCurso;
       };
       dizer().then(resultado => {
         if (resultado === 'bloqueado') GB.audio.aoPrimeiroGesto(dizer);

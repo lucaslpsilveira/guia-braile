@@ -83,6 +83,25 @@
     pararCanal(canal);
   }
 
+  const PAUSA_ENTRE_FRASES = 900;   // ms
+
+  async function falarFrases(frases, opcoes) {
+    if (!narracaoLigada || !fala) return 'desligado';
+    if (!(opcoes && opcoes.fila)) {
+      sequencias.info++;
+      pararCanal('info');
+      pararFala();
+    }
+    const id = sequencias.info;
+    for (let i = 0; i < frases.length; i++) {
+      if (id !== sequencias.info) return 'parado';
+      const resultado = await GB.audio.falar(frases[i], { fila: true });
+      if (resultado !== 'fim') return resultado;
+      if (i < frases.length - 1) await new Promise(r => setTimeout(r, PAUSA_ENTRE_FRASES));
+    }
+    return 'fim';
+  }
+
   GB.audio = {
     narrar(nome) {
       if (!narracaoLigada) return Promise.resolve('desligado');
@@ -93,7 +112,9 @@
     // Fala um texto com a voz do navegador. Obedece ao botão de narração.
     // Com { fila: true } espera a fala atual terminar em vez de interrompê-la.
     // Resolve com: 'fim' | 'bloqueado' (sem interação do usuário ainda) | 'erro' | 'desligado'
+    // Aceita uma lista de frases: elas são ditas em sequência, com uma pausa entre cada uma.
     falar(texto, opcoes) {
+      if (Array.isArray(texto)) return falarFrases(texto, opcoes);
       return new Promise(resolver => {
         if (!narracaoLigada || !fala || !texto) { resolver('desligado'); return; }
         if (!(opcoes && opcoes.fila)) {
@@ -110,7 +131,6 @@
         fala.speak(fala1);
       });
     },
-    introFalando: false,
     efeito(nome) {
       sequencias.fx++;
       return tocar(nome, 'fx');
