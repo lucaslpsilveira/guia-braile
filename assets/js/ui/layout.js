@@ -101,6 +101,57 @@
     });
   }
 
+  // Atalhos: Alt+1 vai para o menu; Alt+R volta ao ponto onde o foco estava antes.
+  function ligarAtalhos() {
+    const FOCAVEIS = 'a[href], button:not([disabled]), input:not([disabled]), textarea, select, [tabindex]';
+    let anterior = null;
+
+    const focaveisVisiveis = () => Array.from(document.querySelectorAll(FOCAVEIS))
+      .filter(el => el.tabIndex >= 0 && el.offsetParent !== null);
+
+    const fecharMenu = () => {
+      const nav = document.getElementById('nav-principal');
+      const botao = document.querySelector('.menu-toggle');
+      if (nav && nav.classList.contains('aberto')) {
+        nav.classList.remove('aberto');
+        botao.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    function irParaMenu() {
+      const nav = document.getElementById('nav-principal');
+      if (!nav) return;
+      if (!nav.contains(document.activeElement)) anterior = document.activeElement;
+      const botao = document.querySelector('.menu-toggle');
+      if (botao && botao.offsetParent !== null) {          // celular: menu recolhido
+        nav.classList.add('aberto');
+        botao.setAttribute('aria-expanded', 'true');
+      }
+      const primeiro = nav.querySelector('a');
+      if (primeiro) primeiro.focus();
+    }
+
+    function voltar() {
+      fecharMenu();
+      if (anterior && document.contains(anterior) && anterior !== document.body) {
+        anterior.focus();
+        anterior = null;
+        return;
+      }
+      // Sem ponto guardado: anda um elemento para trás
+      const lista = focaveisVisiveis();
+      const i = lista.indexOf(document.activeElement);
+      if (i > 0) lista[i - 1].focus();
+    }
+
+    // event.code vale para qualquer layout de teclado (com Alt, event.key pode mudar)
+    document.addEventListener('keydown', e => {
+      if (!e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      if (e.code === 'Digit1' || e.code === 'Numpad1') { e.preventDefault(); irParaMenu(); }
+      else if (e.code === 'KeyR') { e.preventDefault(); voltar(); }
+    });
+  }
+
   function tocarIntroducao() {
     const intro = document.body.dataset.intro;
     if (!intro) return;
@@ -116,6 +167,7 @@
     montarCabecalho();
     montarRodape();
     ligarNarracaoPorFoco();
+    ligarAtalhos();
     tocarIntroducao();
   }
 
