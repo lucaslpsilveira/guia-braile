@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+ <head>
+    <title>Guia Braille</title>
+	<link type='text/css' rel='stylesheet' href='css/dvgame.css'><!-- css da pagina -->
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><!-- Caracteres especiais -->
+	<script type='text/javascript' src='js/jquery.js'></script><!-- Chama jquery -->
+	<script type='text/javascript' src='js/jquery.cycle.all.js'></script><!-- Chama jquery usado para transicao de slides -->
+	<script type='text/javascript' src='js/slideshow.js'></script><!-- Configura o slideshow -->
+	<script language="JavaScript" src="js/functions.js"></script><!-- Arquivo de funcoes-->
+</head>
+  
+  <body  id="corpoJogos" onkeydown="e(event);">
+ 	<div id='menuVoltar' onkeyup="emiteSomInfo('Menu/audio1')"><!-- Logo -->
+		<a href='jogo.html'>
+			<img id='imgVoltar' src='img/voltar.png'></img>
+		</a>
+	</div>
+	<div id="tituloJogos">
+		    <h2>Adivinhe a Letra</h2><br />
+		<p>Procure a simbologia correspondente a letra sorteada. </p> 
+    <script type="text/javascript">     
+	
+      //nivel = 1; // Nível padrão
+      max = 10;  // Escolha máxima padrão do usuário
+	  cont = 1;
+      //Pensar();  // O PC "pensa" em um número dentro do intervalo solicitado  
+	
+	function e(event){
+	 //document.form.editor.value = ""; 
+	 document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/"+event.keyCode+".mp3' hidden=true autostart=true loop=false>";
+	var verifica;
+	verifica=event.keyCode;
+	switch (verifica) {
+	case 113:
+	Pensar();
+	break;
+	}
+	}
+	
+      function Pensar() {
+	  
+	  document.getElementById("letraSorteada").innerHTML = "";
+	  document.form.chute.value = "";   // Limpa o campo p/ facilitar a vida do usuário
+        document.form.chute.focus();  
+	   //alert(cont++);
+        numeroSecreto = Math.round(Math.random()* 4 +1);
+		numeroSecreto2 = Math.round(Math.random()* 4 +1);// Fórmula que o PC usa para "pensar" num número
+        sorteia = Math.round(Math.random()* 1+1);
+		contador = 0;      		// Zera o contador
+		if(numeroSecreto > numeroSecreto2){
+		switch (sorteia) {
+			case 1:    //LETRAS
+				result = (parseFloat(numeroSecreto) + parseFloat(numeroSecreto2));
+				ind = '+';
+			break;
+			case 2:
+				result = numeroSecreto - numeroSecreto2;
+				ind = '-';
+			break;
+	  }
+	  }else{
+	  Pensar();
+	  }
+	  //document.getElementById("DivSomInfo").innerHTML= "<embed src='audio/letras/"+numeroSecreto+".mp3' hidden=true autostart=true loop=false>";
+	  setTimeout("num(numeroSecreto, numeroSecreto2, ind);", 2000);
+	  //setTimeout("num2(numeroSecreto2);", 2000);
+	  document.getElementById("condicao").innerHTML = numeroSecreto + ind + numeroSecreto2;
+	  
+	}
+	
+	function num(num1, num2, ind){
+		switch(num1){
+		case 1: 
+		novo = 49;
+		break;
+	
+		case 2: 
+		novo = 50;
+		break;
+	
+		case 3: 
+		novo = 51;
+		break;
+	
+		case 4: 
+		novo = 52;
+		break;
+	
+		case 5: 
+		novo = 53;
+		break;
+		}
+		switch(num2){
+		case 1: 
+		novo2 = 49;
+		break;
+	
+		case 2: 
+		novo2 = 50;
+		break;
+	
+		case 3: 
+		novo2 = 51;
+		break;
+	
+		case 4: 
+		novo2 = 52;
+		break;
+	
+		case 5: 
+		novo2 = 53;
+		break;
+		}
+		 document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/"+novo+".mp3' hidden=true autostart=true loop=false>";
+		 setTimeout("num2(ind, novo2);", 2000);
+	}
+	
+		function num2(ind ,novo2){
+		if(ind == '-'){
+			document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/menos.mp3' hidden=true autostart=true loop=false>";
+		}else{
+		 document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/mais.mp3' hidden=true autostart=true loop=false>";
+		 }
+		 setTimeout("num3(novo2);", 2000);
+	}
+	function num3(novo2){
+		
+		 document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/"+novo2+".mp3' hidden=true autostart=true loop=false>";
+		 
+	}
+	
+	
+	function finaliza(){
+	document.getElementById("condicao").innerHTML = "Para continuar presione F2";
+	};
+	
+      function Testar() {
+        valorUsuario = document.form.chute.value;  // A escolha do usuário
+		
+        if (result != valorUsuario) {
+          contador++; // Incrementa o contador
+          document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/errou.mp3' hidden=true autostart=true loop=false>";
+        }
+        else {
+          contador++;
+          //alert('Aee campeaooo, acertou em: ' +contador+ ' tentativa(s)');
+		  document.getElementById("DivSomDasLetras").innerHTML= "<embed src='audio/letras/acertou2.mp3' hidden=true autostart=true loop=false>";
+          finaliza();
+        }
+        document.form.chute.value = "";   // Limpa o campo p/ facilitar a vida do usuário
+        document.form.chute.focus();   
+        return false                     // Retorna falso, isto é, não submete o formulário
+      }
+
+
+
+      //-->
+    </script>
+		<h2 align='center' id='condicao'></h2>
+			
+		<h1 align='center' id='letraSorteada'></h1>
+	<div id="formChutar">
+    <form name="form" onsubmit="return Testar()" method="post" action="#">
+				 <table id="inputChutar">
+				 <tr>
+				 <td><p>Chute um valor: </p></td>
+				 <td><input id="chute" onkeydown="e(event);"  type="text" name="chute"></input>&nbsp;&nbsp;</td>
+				<td><input id="btnEnviar" type="submit" name="arriscar" value="Arriscar!"  />&nbsp;&nbsp;</td>
+				</tr>
+				</table>
+	</form>
+	<div id="sound_element" >
+	</div>
+	</div>
+	
+	<div id="DivSomDasLetras"></div> <!-- Div escondido que toca os audios da função emiteSom -->
+	<div id="DivSomInfo">
+		<embed src='audio/PaginaBraille/intro.mp3' hidden=true autostart=true loop=false>
+	</div> <!-- Div escondido que toca os audios da emitoSomInfo -->
+  </body>
+</html>
+  </body>
+</html>

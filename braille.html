@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>Guia Braille</title>
+	<link type='text/css' rel='stylesheet' href='css/dvgame.css'><!-- css da pagina -->
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><!-- Caracteres especiais -->
+	<script type='text/javascript' src='js/jquery.js'></script><!-- Chama jquery -->
+	<script type='text/javascript' src='js/jquery.cycle.all.js'></script><!-- Chama jquery usado para transicao de slides -->
+	<script type='text/javascript' src='js/slideshow.js'></script><!-- Configura o slideshow -->
+	<script language="JavaScript" src="js/functions.js"></script><!-- Arquivo de funcoes-->
+</head>
+<body>
+<div id='BodyHeader' class='headerfixedHeight'><!-- Div que contem todo menu -->
+	<div id='CentroMenu'><!-- Para centralizar o menu -->
+	<div id='LogoArea' onkeyup="emiteSomInfo('Menu/audio1')"><!-- Logo -->
+		<a href='index.html'>
+			<img id='Logo' src='img/logo.png'></img>
+		</a>
+	</div>
+	<div id='NavigationArea'><!-- Botoes menu -->
+		<ul class='navigationElements'>
+			<li><a href="projeto.html" onkeyup="emiteSomInfo('Menu/audio2')">Projeto</a></li>
+			<li><a href="braille.html" onkeyup="emiteSomInfo('Menu/audio3')">Braille</a></li>
+			<li><a href="jogo.html" onkeyup="emiteSomInfo('Menu/audio4')">Jogo</a></li>
+			<li><a href="teclado.html" onkeyup="emiteSomInfo('Menu/audio5')">Faça seu teclado</a></li>
+		<ul>
+	</div>
+	</div>
+</div>
+<!--------------------------------------- Começa o corpo do site ---------------------------------------->
+<div id='BodyContent'><!-- Corpo -->
+	<div id='Conteudo_1' class="conteudo direita cor2">
+		<div class="titulo"><h1>Contextualização sobre o sistema Braille</h1></div>
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>História</h2>
+			<p>O Sistema Braille foi criado por Louis Braille, deficiente visual que com dezoito anos tornou-se professor 
+			do Instituto de Cegos de Paris. Ao ouvir falar de um sistema de pontos inventado por um oficial para 
+			ler mensagens durante a noite em lugares onde seria perigoso acender a luz, fez algumas adaptações no sistema 
+			de pontos em alto relevo, e em 1829 criou a simbologia Braille.</p>
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaBraille/audio1')">
+			<a href="#"><img src='img/louis_braille.png' ></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_2' class="conteudo esquerda cor1">
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>Como funciona?</h2>
+			<p> Braille é uma linguagem de leitura e escrita tátil usada por deficientes visuais. Esta linguagem é composta
+			por 63 sinais formados por pontos que seguem um padrão. Os pontos representam os caracteres, que são marcados em 
+			alto relevo para que o deficiente visual consiga identifica-los através do tato. Através de um padrão de duas 
+			colunas compostas por três pontos cada, diferentes combinações em alto relevo são formadas, criando assim os 
+			caracteres Braille. </p>
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaBraille/audio2')">
+			<a href="#"><img src='img/leitura_braille.jpg'></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_3' class="conteudo direita cor2">
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>Exemplo</h2>
+			<p> Para compreender melhor, analise o exemplo da letra A, na simbologia Braille: a letra A,
+			em Braille, é composta por um alto relevo na coluna 1 e linha 1, sendo que as demais colunas 
+			ficam vazias. Ou seja, a letra A é constituída por apenas um ponto em alto relevo. Simples, não?</p>
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaBraille/audio3')">
+			<a href="#"><img src='img/simbologia.png'></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_4' class="conteudo direita cor3">
+		<div class="titulo">
+		<h2 id="titulo">Veja na prática:</h2>
+		<p> Para ver como funciona na prática, procure alguma simbologia em Braille no seu teclado adaptado e
+		pressione para descobrir a qual letra ela corresponde. </p> 
+			<div id="caixaTexto"> <!-- textarea -->
+				<form name="formulario" action="Saves/salvar.php" method="POST">
+					<textarea id="editor"  onkeydown="emiteSom(event);"></textarea>
+				</form>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<div id="espacador"></div>
+<!--------------------------------------- Começa o Roda pé ---------------------------------------->
+<div id='BodyFooter' class="container">
+	<div id="DivSomDasLetras"></div> <!-- Div escondido que toca os audios da função emiteSom -->
+	<div id="DivSomInfo">
+		<embed src='audio/PaginaBraille/intro.mp3' hidden=true autostart=true loop=false>
+	</div> <!-- Div escondido que toca os audios da emitoSomInfo -->
+	<div id='CentroFooter'><!-- Para centralizar o footer -->
+		<div class="PrimaryContent"><!-- Parte que fica sobre a linha -->
+			<div id='FooterNavigation'><!-- Conteudo do roda pe deve ficar dentro desse elemento -->
+				<a>Contato: GuiaBraille@gmail.com</a>
+			</div>
+		</div>
+		<div class="SecondaryContent"><!-- Parte inferior a linha -->
+			<div id='FooterNavigation'><!-- Conteudo do roda pe deve ficar dentro desse elemento -->
+				<a>Brasil</a> |
+				<a>Rio Grande do Sul</a> |
+				<a>Instituto Federal Sul-Rio-Grandense Campus Charqueadas</a>
+			</div>
+			<div id="LogoAndCopyright"><!-- Logo e Copyright respectivamente -->
+				<div id="CopyrightLogo"></div>
+				<div id="CopyrightText">
+                    © 2014 Guia Braille
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

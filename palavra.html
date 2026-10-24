@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+  <head>
+    <title>Acerte a palavra</title>
+    <meta name="author" content="Gordo Rosca | www.gordodabunda.com.br" />
+    <meta name="copyright" content="© 2014 by Gordo Rosca" />
+ </head>
+  
+  <body onload="document.form.chute.focus(); ">
+    <span class="titulo">Acerte a palavra</span><br />
+    <style type="text/css">
+      <!--
+      .superior {
+        background-color: #C12062;
+        color: #FFFFFF
+      }
+      table {
+        border: inset 3px #000000;
+        background-color: #DFDFDF;
+      }
+      body {
+        font: 13px  'Trebuchet MS', 'Segoe UI', Verdana, sans-serif;
+        background-color: #EFEFFE;
+      }
+      .titulo {
+        font: small-caps 25px Tahoma, sans-serif;
+        color: #255681;
+        background-color: #EFEFEF
+      }
+      -->
+    </style>
+
+    <script type="text/javascript">     
+
+      //nivel = 1; // Nível padrão
+      max = 10;  // Escolha máxima padrão do usuário
+	  cont = 1;
+      Pensar();  // O PC "pensa" em um número dentro do intervalo solicitado  
+
+      function Pensar() {
+	   //alert(cont++);
+        //numeroSecreto = Math.round(Math.random()* 100);
+        sorteia = Math.round(Math.random()* 9+1);
+		contador = 0;      		// Zera o contador
+		switch (sorteia) {
+			case 1:    //LETRAS
+				palavra = 'caturrita';
+				ind = '+';
+			break;
+			case 2:
+				palavra = 'anfibio';
+				ind = '-';
+			break;
+			case 3:
+				palavra = 'banana';
+				ind = '-';
+			break;
+			case 4:
+				palavra = 'gordo';
+				ind = '-';
+			break;
+			case 5:
+				palavra = 'carregador';
+				ind = '-';
+			break;
+			case 6:
+				palavra = 'boqueira';
+				ind = '-';
+			break;
+			case 7:
+				palavra = 'teclado';
+				ind = '-';
+			break;
+			case 8:
+				palavra = 'computador';
+				ind = '-';
+			break;
+			case 9:
+				palavra = 'mouse';
+				ind = '-';
+			break;
+			case 10:
+				palavra = 'escola';
+				ind = '-';
+			break;
+	  }
+	  document.write("	<h1 align='center'>"+palavra+"</h1>");
+	
+	}
+	
+      function Testar() {
+        valorUsuario = document.form.chute.value;  // A escolha do usuári
+		
+        if (palavra != valorUsuario) {
+          contador++; // Incrementa o contador
+          alert('Errou mane!');
+        }
+        else {
+          contador++;
+          alert('Aee campeaooo, acertou em: ' +contador+ ' tentativa(s)');
+          Pensar();
+        }
+        document.form.chute.value = "";   // Limpa o campo p/ facilitar a vida do usuário
+        document.form.chute.focus();   
+        return false                     // Retorna falso, isto é, não submete o formulário
+      }
+
+
+
+      //-->
+    </script>
+    <form name="form" onsubmit="return Testar()" method="post" action="#">
+		
+      Chute um valor: <input type="text" size="6"  name="chute" />&nbsp;&nbsp;
+      <input type="submit" name="arriscar" value="Arriscar!" onmouseover="style.color = '#FF0000'" onmouseout="style.color = ''" />&nbsp;&nbsp;
+      <input type="button" value="Desistir!" onclick="alert('O número que eu escolhi foi: ' + numeroSecreto + '. Pena que você desistiu! Tente novamente, eu vou pensar em outro número, OK?'); Pensar()" /><br /><br />
+	  
+    </form>
+	<div id="sound_element" >
+	</div>
+    <br /><br /><div style="font-size: 13px"><span style="color: #FF0000">Dica</span>: ganhe tempo pressionando ENTER para jogar</div>
+  </body>
+</html>

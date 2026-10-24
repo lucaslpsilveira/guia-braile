@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>Guia Braille</title>
+	<link type='text/css' rel='stylesheet' href='css/dvgame.css'><!-- css da pagina -->
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><!-- Caracteres especiais -->
+	<script type='text/javascript' src='js/jquery.js'></script><!-- Chama jquery -->
+	<script type='text/javascript' src='js/jquery.cycle.all.js'></script><!-- Chama jquery usado para transicao de slides -->
+	<script type='text/javascript' src='js/slideshow.js'></script><!-- Configura o slideshow -->
+	<script language="JavaScript" src="js/functions.js"></script><!-- Arquivo de funcoes-->
+</head>
+<body>
+<div id='BodyHeader' class='headerfixedHeight'><!-- Div que contem todo menu -->
+	<div id='CentroMenu'><!-- Para centralizar o menu -->
+	<div id='LogoArea' onkeyup="emiteSomInfo('Menu/audio1')"><!-- Logo -->
+		<a href='index.html'>
+			<img id='Logo' src='img/logo.png'></img>
+		</a>
+	</div>
+	<div id='NavigationArea'><!-- Botoes menu -->
+		<ul class='navigationElements'>
+			<li><a href="projeto.html" onkeyup="emiteSomInfo('Menu/audio2')">Projeto</a></li>
+			<li><a href="braille.html" onkeyup="emiteSomInfo('Menu/audio3')">Braille</a></li>
+			<li><a href="jogo.html" onkeyup="emiteSomInfo('Menu/audio4')">Jogo</a></li>
+			<li><a href="teclado.html" onkeyup="emiteSomInfo('Menu/audio5')">Faça seu teclado</a></li>
+		<ul>
+	</div>
+	</div>
+</div>
+<div id='BodyContent'><!-- Corpo -->
+	<div id='Conteudo_1' class="conteudo direita cor2">
+		<div class="titulo"><h1>Sobre o Projeto</h1></div>
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>O que é?</h2>
+			<p>Desenvolvido pelos alunos José Felipe Rodrigues Serpa, Lucas Pedreira da Silveira e Pietro de Almeida Lopes
+			no Instituto Federal Sul-rio-grandense Campus Charqueadas, O guia Braille é um ambiente que possibilita que você aprenda
+			o Braille de forma fácil, interativa e estimulante. Esta ferramenta é voltada principalmente para deficientes visuais, 
+			porém pode ser usada por toda e qualquer pessoa que tenha interesse pelo assunto. </p> 
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaProjeto/audio1')">
+			<a href="#"><img src='img/duvida.png'></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_2' class="conteudo esquerda cor1">
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2> Como funciona? </h2>
+			<p>As informações presentes no site serão transmitidas através de áudios e textos, 
+			possibilitando que você possa usar o método que mais lhe convém. Para o estudo do Braille,
+			em primeiro momento, o site irá lhe apresentar os principais conceitos da simbologia. 
+			Em um segundo momento, você será levado a desempenhar atividades interativas, 
+			que são jogos de ensino de Braille.</p> 
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaProjeto/audio2')">
+			<a href="#"><img src='img/ouvir.png'></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_3' class="conteudo direita cor2">
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>Como faço para navegar pelo site sem o auxílio do mouse?</h2>
+			<p> Para navegar pelo site sem o auxílio do mouse é muito simples! 
+			Basta pressionar a tecla “tab” de seu teclado para alterar entre os elementos. 
+			A cada elemento selecionado, um áudio será emitido para lhe auxiliar. 
+			Pressione “tab” e experimente agora mesmo! </p> 
+			</div>
+		</div>
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaProjeto/audio3')">
+			<a href="#"><img src='img/usar.png'></img></a>
+		</div>
+	</div>
+	<div id='Conteudo_4' class="conteudo esquerda cor1">
+		<div class="caixaImagem" onkeyup="emiteSomInfo('PaginaProjeto/audio4')">
+			<a href="#"><img src='img/preciso.png'></img></a>
+		</div>
+		<div class="caixaTexto">
+			<div class="caixa">
+			<h2>Para usar o sistema é preciso utilizar um teclado adaptado para o Braille</h2>
+			<p> Os jogos interativos necessitam de um teclado adaptado para o Braille. 
+			Porém, você não precisa gastar muito em um teclado adaptado, 
+			pois o Guia Braille ensina como fazer seu próprio teclado, basta acessar o
+			campo “Faça seu Teclado” no menu superior ou clicar no link abaixo.</p>
+			<p><a href="teclado.html">Faça seu teclado</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="espacador"></div>
+<div id='BodyFooter' class="container">
+	<div id="DivSomInfo">
+		<embed src='audio/PaginaProjeto/intro.mp3' hidden=true autostart=true loop=false>
+	</div> <!-- Div escondido que toca os audios da emitoSomInfo -->
+	<div id='CentroFooter'><!-- Para centralizar o footer -->
+		<div class="PrimaryContent"><!-- Parte que fica sobre a linha -->
+			<div id='FooterNavigation'><!-- Conteudo do roda pe deve ficar dentro desse elemento -->
+				<a>Contato: GuiaBraille@gmail.com</a>
+			</div>
+		</div>
+		<div class="SecondaryContent"><!-- Parte inferior a linha -->
+			<div id='FooterNavigation'><!-- Conteudo do roda pe deve ficar dentro desse elemento -->
+				<a>Brasil</a> |
+				<a>Rio Grande do Sul</a> |
+				<a>Instituto Federal Sul-Rio-Grandense Campus Charqueadas</a>
+			</div>
+			<div id="LogoAndCopyright"><!-- Logo e Copyright respectivamente -->
+				<div id="CopyrightLogo"></div>
+				<div id="CopyrightText">
+                    © 2014 Guia Braille
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

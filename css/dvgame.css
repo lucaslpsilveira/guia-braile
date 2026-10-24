@@ -1,0 +1,421 @@
+*  { margin:0; padding:0; border:0 none; font: inherit; vertical-align: baseline;}
+
+h2:first-child, h3:first-child, h4:first-child {
+    margin-top: 0px;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI Light',Arial,Sans-Serif;
+}
+
+body {
+    color: #636468;
+    font-family: 'Segoe UI',Arial,Sans-Serif;
+    font-size: 14px;
+	line-height: 1;
+}
+
+ol, ul, li {
+    list-style: none outside none;
+	display:inline;
+}
+
+/*Inicio formatação div do Corpo*/
+div#BodyHeader {
+    background-color: #C00000;
+    height: 64px;
+    min-height: 64px;
+    min-width: 995px;
+    width: 100%;
+    z-index: 100;
+	min-height: 100px;
+	z-index: 10;
+}
+
+div#BodyHeader a {
+    font-weight: normal;
+}
+/*Fim formatação div do Corpo*/
+
+/*Inicio formatação div do Menu*/
+#CentroMenu{
+	position: relative;
+	margin: 0 auto;
+	background: #C00000;
+	height: 64px;
+	width:975px;
+}
+
+div.headerFixedHeight {
+    height: 64px !important;
+    min-height: 64px !important;
+    top: 20px !important;
+}
+
+#LogoArea {
+	position:relative;
+    float: left;
+    margin-right: 25px;
+    height: 64px;
+    width: 32px;
+}
+
+#Logo {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 8px;
+}
+
+#NavigationArea {
+    float: left;
+    height: 64px;
+    width: 676px;
+    z-index: 30;
+    background-color: #C00000;
+}
+
+.navigationElements{
+	display:inline;
+	font-size:25px;
+}
+
+ul.navigationElements {
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    font-family: "Segoe UI Semibold",Arial,Sans-Serif;
+}
+ul.navigationElements li a {
+    color: #FFF;
+    padding: 19.5px 19px 19.5px 19px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: "Segoe UI Semibold",Arial,Sans-Serif !important;
+	position:relative;
+    float: left;	
+}
+
+.navigationElements li :hover{
+	background-color:#222222;
+}
+/*Fim formatação div do Menu*/
+
+/*Inicio formatação div do Slideshow*/
+#slideApresentacao{
+	margin: 20px auto;
+	width:955px;
+	height:538px;
+	background-image:url("../img/slide3.png");
+	overflow:hidden;
+}
+
+#slideApresentacao img{
+	width:955px;
+	height:538px;
+	display:block;
+}
+
+#slideApresentacao ul{
+	list-style:none;
+}
+/*Fim formatação div do Slideshow*/
+
+/*Inicio formatação div de Roda pé*/
+#BodyFooter {
+	font-size: 14px;
+	color: #BDBEC1;
+	min-height: 140px;
+	text-align: center;
+	background-color: #333;	
+	min-width: 995px;
+	clear: both;
+}
+
+#FooterNavigation {
+    float: left;
+    font-size: 14px;
+    margin-right: 14px;
+}
+
+#FooterContentArea {
+    width: 237px;
+    float: right;
+    text-align: right;
+}
+
+#CentroFooter{
+	position: relative;
+	margin: 0 auto;
+	color: #BDBEC1;
+	height: 140px;
+	width:975px;
+}
+
+.PrimaryContent {
+    font-size: 12px;
+    padding: 30px 0px 10px;
+    overflow: auto;
+    margin: 0px auto;
+    width: 955px;
+}
+
+.SecondaryContent {
+    border-top: 1px solid #BDBEC1;
+    padding: 10px 0px;
+    overflow: auto;
+    width: 955px;
+    margin: 0px auto;
+    font-size: 12px;
+}
+
+#LogoAndCopyright {
+    float: right;
+}
+
+#CopyrightLogo {
+    background-image: url('../img/guiabraille.png');
+    background-position: right top;
+    background-repeat: no-repeat;
+    height: 19px;
+    width: 106px;
+}
+
+#CopyrightText {
+    font-size: 11px;
+    text-align: right;
+} 
+/*Fim formatação div de Roda pé*/
+
+/*Inicio formatação div de conteudo*/
+.titulo {
+    width: 955px;
+    margin: 0px auto;
+    display: block;
+	font-size: 20px;
+	line-height: px;
+	text-align: center;
+	padding-bottom:20px;
+	padding-top:20px;
+}
+
+.titulo img{
+padding-top:20px;
+}
+
+#titulo {
+color:#F2F2F2;
+}
+
+.conteudo {
+    margin: 0px;
+    padding: 0px 0px;
+    width: 100%;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    clear: both;
+}
+
+.conteudo.cor1{
+	background-color:#FFF;
+}
+
+.conteudo.cor2{
+	background-color: #F2F2F2;
+}
+
+.conteudo.cor3{
+	background-color: #000;
+	color: #FFF;
+}
+
+.esquerda {
+    float: left;
+}
+
+.direita {
+    float: right;
+}
+
+.conteudo.direita .caixaTexto {
+    text-align: right;
+    float: right;
+    display: block;
+}
+
+.conteudo.esquerda .caixaTexto {
+    text-align: right;
+    float: left;
+    display: block;
+}
+
+.conteudo .caixaTexto {
+    width: 50%;
+}
+
+.conteudo.direita .caixaTexto .caixa {
+    text-align: left;
+	padding-top: 20px;
+}
+
+.conteudo.esquerda .caixaTexto .caixa {
+    text-align: left;
+    float: right;
+	padding-right: 20px;
+	padding-top: 20px;
+}
+
+.conteudo .caixaTexto .caixa {
+    display: block;
+    width: 477px;
+}
+
+.conteudo h2 {
+    font-size: 40px;
+    line-height: 44px;
+	color:#231f20;
+}
+
+.conteudo h1{
+	font-size:50px;
+	font-weight:bold;
+	line-height: 44px;
+	color:#231f20;
+}
+
+.conteudo.direita .caixaImagem {
+    float: left;
+    text-align: right;
+    direction: rtl;
+}
+
+.conteudo.esquerda .caixaImagem {
+    float: right;
+    text-align: left;
+}
+
+.conteudo .caixaImagem {
+    width: 50%;
+}
+
+.caixaImagem img {
+    margin-right: 20px;
+	width:100%;
+}
+
+.conteudo .caixaImagem img {
+    display: block;
+}
+
+.caixa a:hover, a:focus {
+    color: #C00000;
+    cursor: pointer;
+}
+.caixa a, a:visited {
+    color: #FF2222;
+    font-weight: bold;
+    text-decoration: none;
+}
+/*Fim formatação div de conteudo*/
+
+/* Inicio formatação caixa de texto */
+#caixaTexto{
+	padding-top: 20px;
+}
+
+#caixaTexto textarea{
+	resize:none;
+	height:200px;
+	min-height:200px;
+	max-height:200px;
+	width:855px;
+	min-width:855px;
+	max-width:855px;
+	font-size:100px;
+	line-height:106px;
+}
+/* Fim formtação caixa de texto */
+
+/* Inicio formatação jogos */
+.jogos {
+	margin-top:10px;
+    height:637.5px;
+    width: 975px;
+	background-color:#000;
+}
+
+.jogos .menu{
+	height: 300px;
+	width: 300px;
+	background-color:#000;
+	display:inline;
+	float:left;
+	margin-left:18.75px;
+}
+
+
+#letraSorteada{
+	 color: #f1f1f1;
+	 text-align:center;
+    font-family: 'Segoe UI',Arial,Sans-Serif;
+    font-size: 150px;
+	line-height:155px;
+}
+
+#menuVoltar{
+	margin-top:15px;
+	margin-left:15px;
+	position:relative;
+}
+
+#imgVoltar{
+	height:70px;
+	width:70px;
+}
+
+#corpoJogos{
+	background-color:#000;
+}
+
+#tituloJogos p{
+	text-align:center;
+	font-size: 40px;
+	color:#6f6f6f;
+}
+
+#tituloJogos h2{
+	text-align:center;
+	font-size: 80px;
+	color:#f1f1f1;
+}
+
+#condicao{
+	padding-top:20px;
+	height:100px;
+	
+}
+
+#formChutar{
+	width:955px;
+	margin:0 auto;
+}
+
+#chute{
+	font-size:25px;
+	height:30px;
+	width:50px;
+}
+
+#btnEnviar{
+	background: #222222;
+	color:#fff;
+	padding-top:5px;
+	font-size:25px;
+	height:30px;
+	width:100px;
+}
+
+/* Fim formatação jogos */
