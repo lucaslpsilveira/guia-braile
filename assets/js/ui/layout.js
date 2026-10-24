@@ -28,7 +28,7 @@
       '<header class="site-header"><div class="container">' +
       '<a class="marca" href="' + base + 'index.html" data-audio="menu/audio1">' +
       '<img src="' + base + 'assets/img/logo.png" alt="" width="44" height="44"><span>Guia Braille</span></a>' +
-      '<button type="button" class="btn-narracao"><span class="icone" aria-hidden="true"></span><span class="rotulo"></span></button>' +
+      '<button type="button" class="btn-narracao" tabindex="-1"><span class="icone" aria-hidden="true"></span><span class="rotulo"></span></button>' +
       '<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="nav-principal">Menu</button>' +
       '<nav class="nav-principal" id="nav-principal" aria-label="Principal"><ul>' + itens + '</ul></nav>' +
       '</div></header>';
@@ -73,6 +73,7 @@
     link.className = 'pular-conteudo';
     link.href = '#' + principal.id;
     link.textContent = 'Pular para o conteúdo';
+    link.dataset.fala = 'Pular para o conteúdo. Pressione Enter.';
     document.body.prepend(link);
   }
 
