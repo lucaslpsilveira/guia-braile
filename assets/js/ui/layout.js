@@ -75,6 +75,14 @@
     link.href = '#' + principal.id;
     link.textContent = 'Pular para o conteúdo';
     link.dataset.fala = 'Pular para o conteúdo. Pressione Enter.';
+    // Enter leva o foco direto ao primeiro item do conteúdo (que já narra a explicação)
+    link.addEventListener('click', e => {
+      const primeiro = Array.from(principal.querySelectorAll('a[href], button:not([disabled]), input, textarea, select, [tabindex]'))
+        .find(el => el.tabIndex >= 0 && el.offsetParent !== null);
+      if (!primeiro) return;
+      e.preventDefault();
+      primeiro.focus();
+    });
     document.body.prepend(link);
   }
 
@@ -159,28 +167,18 @@
   }
 
   function tocarIntroducao() {
-    // Introdução falada com a voz do navegador (sem MP3)
-    const texto = document.body.dataset.introFala;
-    if (texto) {
-      const dizer = () => {
-        introEmCurso = GB.audio.falar(texto.split('|')).then(resultado => {
-          introEmCurso = null;
-          return resultado;
-        });
-        return introEmCurso;
-      };
-      dizer().then(resultado => {
-        if (resultado === 'bloqueado') GB.audio.aoPrimeiroGesto(dizer);
-      });
-      return;
-    }
-
     const intro = document.body.dataset.intro;
     if (!intro) return;
-    GB.audio.narrar(intro).then(resultado => {
-      if (resultado === 'bloqueado') {
-        GB.audio.aoPrimeiroGesto(() => GB.audio.narrar(intro));
-      }
+    const tocar = () => {
+      introEmCurso = GB.audio.narrar(intro).then(resultado => {
+        introEmCurso = null;
+        return resultado;
+      });
+      return introEmCurso;
+    };
+    tocar().then(resultado => {
+      // Navegador bloqueou o áudio automático: começa na primeira tecla ou toque
+      if (resultado === 'bloqueado') GB.audio.aoPrimeiroGesto(tocar);
     });
   }
 

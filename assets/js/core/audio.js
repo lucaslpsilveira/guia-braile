@@ -83,7 +83,7 @@
     pararCanal(canal);
   }
 
-  const PAUSA_ENTRE_FRASES = 900;   // ms
+  const PAUSA_ENTRE_FRASES = 350;   // ms
 
   async function falarFrases(frases, opcoes) {
     if (!narracaoLigada || !fala) return 'desligado';
