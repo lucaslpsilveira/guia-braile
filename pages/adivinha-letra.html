@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-base="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adivinhe a letra | Guia Braille</title>
+  <meta name="description" content="Ouça a letra sorteada e responda com a simbologia correspondente.">
+  <meta name="theme-color" content="#c00000">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body data-page="jogos">
+  <div id="site-header"></div>
+  <main>
+    <section class="titulo-pagina">
+      <div class="container">
+        <a class="link-voltar" href="jogos.html" data-audio="menu/audio1">← Voltar aos jogos</a>
+        <h1>Adivinhe a letra</h1>
+        <p>Ouça a letra sorteada e responda com a simbologia correspondente.</p>
+      </div>
+    </section>
+    <section class="jogo">
+      <div class="container">
+        <div class="jogo-painel">
+          <div id="tela-jogo">
+            <fieldset class="jogo-modo">
+              <legend>Como você vai responder?</legend>
+              <label><input type="radio" name="modo" value="adaptado"> Teclado adaptado (teclas de letras e números)</label>
+              <label><input type="radio" name="modo" value="pontos"> Teclado Braille de 6 pontos (toque ou teclas F D S J K L)</label>
+            </fieldset>
+            <div class="jogo-status" aria-live="off">
+              <span id="jogo-rodada">Rodada 0 de 10</span>
+              <span id="jogo-pontos">Acertos: 0</span>
+            </div>
+            <div class="jogo-pergunta " id="jogo-pergunta" aria-hidden="true"></div>
+            <p class="jogo-feedback" id="jogo-feedback" role="status" aria-live="assertive"></p>
+            <div class="jogo-controles">
+              <button type="button" class="btn" id="btn-iniciar">Começar</button>
+              <button type="button" class="btn secundario" id="btn-repetir" hidden>Repetir o som (Enter)</button>
+            </div>
+            <div id="teclado-braille"></div>
+            <p class="jogo-ajuda" id="jogo-ajuda"></p>
+          </div>
+          <div id="tela-fim" hidden>
+            <h2 id="fim-resumo"></h2>
+            <form id="form-ranking" class="ranking-form">
+              <label for="ranking-nome" class="sr-only">Seu nome</label>
+              <input type="text" id="ranking-nome" maxlength="20" placeholder="Seu nome" autocomplete="nickname">
+              <button type="submit" class="btn">Salvar no ranking</button>
+            </form>
+            <h3>Ranking</h3>
+            <ol class="ranking-lista" id="lista-ranking"></ol>
+            <p><button type="button" class="btn" id="btn-reiniciar">Jogar de novo</button></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../assets/js/core/audio.js" defer></script>
+  <script src="../assets/js/core/braille.js" defer></script>
+  <script src="../assets/js/ui/layout.js" defer></script>
+  <script src="../assets/js/ui/braille-keyboard.js" defer></script>
+  <script src="../assets/js/storage/ranking.js" defer></script>
+  <script src="../assets/js/games/engine.js" defer></script>
+  <script src="../assets/js/games/adivinha-letra.js" defer></script>
+</body>
+</html>

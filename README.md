@@ -43,62 +43,73 @@ O sistema explica os principais conceitos da simbologia Braille e propõe exerc�
 
 | Página | Descrição |
 |---|---|
-| [index.html](index.html) | Página inicial, com menu e narração em áudio. |
-| [projeto.html](projeto.html) | Apresentação do projeto. |
-| [braille.html](braille.html) | Contextualização do Braille: história, como funciona e a simbologia. |
-| [jogo.html](jogo.html) | Menu de jogos em Braille. |
-| [adivinhaLetra.html](adivinhaLetra.html) / [adivinhaLetra.php](adivinhaLetra.php) | **Adivinhe a Letra**: o sistema fala uma letra e o usuário deve digitá-la no teclado. São 10 rodadas, e a pontuação é enviada para o ranking. |
-| [conta.html](conta.html) / [conta2.html](conta2.html) | **Matemática iniciante**: exercícios de contas com letras e números e retorno por áudio. |
-| [ranking.php](ranking.php) | Registra o nome do jogador e a pontuação em [arquivo.txt](arquivo.txt). |
-| [teclado.html](teclado.html) | **Faça seu teclado**: tutorial em 5 etapas para adaptar um teclado comum ao Braille. |
-| [palavra.html](palavra.html), [relogio.html](relogio.html) | Protótipos e experimentos. |
+| [index.html](index.html) | Página inicial, com slideshow e narração em áudio. |
+| [pages/projeto.html](pages/projeto.html) | Apresentação do projeto. |
+| [pages/braille.html](pages/braille.html) | História e funcionamento do Braille, área de prática e o alfabeto em Braille. |
+| [pages/jogos.html](pages/jogos.html) | Menu de jogos. |
+| [pages/adivinha-letra.html](pages/adivinha-letra.html) | **Adivinhe a Letra**: o sistema fala uma letra e o jogador responde. São 10 rodadas. |
+| [pages/matematica.html](pages/matematica.html) | **Matemática iniciante**: somas e subtrações com números de 1 a 5, faladas em áudio. |
+| [pages/teclado.html](pages/teclado.html) | **Faça seu teclado**: tutorial em 5 etapas para adaptar um teclado comum ao Braille. |
 
-Vários jogos aparecem no menu como "em construção". A proposta previa expandir o sistema periodicamente com novos jogos interativos.
+Vários jogos aparecem no menu como "em breve". A proposta previa expandir o sistema periodicamente com novos jogos interativos.
 
 ### Acessibilidade
 
-- Todas as páginas têm **áudios narrados** (pasta [audio/](audio/)), disparados pelo foco nos itens do menu ou pelo teclado.
-- Cada tecla pressionada emite o som da letra correspondente. O arquivo de áudio é escolhido pelo `keyCode` da tecla (ver [js/functions.js](js/functions.js)).
-- Os jogos dão retorno sonoro de acerto e erro.
-- Não é preciso usar o mouse: a interação é feita pelo teclado.
+- Todas as páginas têm **áudios narrados** (pasta [assets/audio/](assets/audio/)), tocados ao focar um elemento com a tecla Tab e pelos botões "Ouvir esta explicação". A narração pode ser desligada no cabeçalho.
+- Navegação completa pelo teclado, com foco visível, link "Pular para o conteúdo", HTML semântico e anúncios por `aria-live` para leitores de tela.
+- Os jogos dão retorno sonoro de acerto e erro (e vibração no celular).
+
+### Formas de responder nos jogos
+
+| Modo | Como funciona |
+|---|---|
+| **Teclado adaptado** | A pessoa pressiona a tecla que tem o símbolo Braille colado (modo original do projeto). É o padrão no computador. |
+| **Teclado Braille de 6 pontos** | Na tela, toque nos pontos e confirme. No teclado físico, pressione juntas as teclas **F D S** (pontos 1, 2, 3) e **J K L** (pontos 4, 5, 6). É o padrão no celular. |
+
+O ranking de cada jogo fica salvo no navegador (`localStorage`).
 
 ## Tecnologias
 
-- **HTML**, **CSS** e **JavaScript** (estrutura, estilo e lógica)
-- **jQuery** e **jQuery Cycle** (slideshow da página inicial)
-- **Bootstrap** (layout)
-- **PHP** (apenas para o ranking e a versão PHP do jogo)
-- Áudios em **MP3**, reproduzidos com a tag `<embed>`
+HTML, CSS e JavaScript puros, sem frameworks, sem etapa de build e sem back-end:
+
+- CSS com variáveis, Flexbox/Grid e abordagem mobile-first
+- JavaScript em arquivos simples, sem módulos ES, para funcionar até abrindo os arquivos direto no navegador
+- Áudios em MP3 reproduzidos com a API `Audio`
+- Imagens em WebP
 
 ## Estrutura de pastas
 
 ```
 .
-├── index.html, projeto.html, braille.html,
-│   jogo.html, teclado.html      # Páginas principais
-├── adivinhaLetra.html/.php      # Jogo "Adivinhe a Letra"
-├── conta.html, conta2.html      # Jogo de matemática
-├── ranking.php, arquivo.txt     # Ranking (gravado em arquivo texto)
-├── audio/                       # Narrações e sons das letras
-├── img/                         # Imagens e slides
-├── css/                         # Estilos (dvgame.css)
-├── js/                          # jQuery, slideshow e funções de áudio
-└── bootstrap/                   # Framework de layout
+├── index.html
+├── pages/                  # projeto, braille, jogos, teclado e os jogos
+└── assets/
+    ├── css/                # base, layout, components, games (importados por main.css)
+    ├── js/
+    │   ├── core/           # audio.js e braille.js (alfabeto, teclas)
+    │   ├── ui/             # layout, slideshow e teclado Braille de 6 pontos
+    │   ├── games/          # engine.js (motor comum) e um arquivo por jogo
+    │   ├── pages/          # scripts específicos de páginas
+    │   └── storage/        # ranking.js
+    ├── img/
+    └── audio/              # menu/, paginas/ e letras/
 ```
+
+Para criar um novo jogo, basta uma página em `pages/` e um arquivo em `assets/js/games/` que chame `GB.iniciarJogo({...})` informando como gerar cada pergunta.
 
 ## Como executar
 
-1. Coloque a pasta em um servidor web com PHP, como Apache ou o servidor embutido do PHP:
+Não precisa de instalação. Sirva a pasta com qualquer servidor estático:
 
-   ```bash
-   php -S localhost:8000
-   ```
+```bash
+python3 -m http.server 8000
+# ou
+npx serve .
+```
 
-2. Abra `http://localhost:8000/` no navegador.
+e abra `http://localhost:8000/`. Abrir o `index.html` direto no navegador também funciona.
 
-As páginas estáticas funcionam abrindo os arquivos HTML diretamente. O ranking e a versão PHP do jogo exigem PHP com permissão de escrita em `arquivo.txt`.
-
-> **Observação:** o projeto é de 2014 e depende da tag `<embed>` e de `keyCode` para tocar o áudio. Navegadores modernos podem bloquear a reprodução automática ou não reproduzir os sons corretamente.
+> **Observação:** navegadores bloqueiam áudio antes da primeira interação. Por isso a narração de abertura começa no primeiro toque ou tecla pressionada.
 
 ## Metodologia
 

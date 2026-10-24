@@ -1,64 +1,41 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR" data-base="">
 <head>
-	<title>Guia Braille</title>
-	<link type='text/css' rel='stylesheet' href='css/dvgame.css'><!-- css da pagina -->
-	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><!-- Caracteres especiais -->
-	<script type='text/javascript' src='js/jquery.js'></script><!-- Chama jquery -->
-	<script type='text/javascript' src='js/jquery.cycle.all.js'></script><!-- Chama jquery usado para transição de slides -->
-	<script type='text/javascript' src='js/slideshow.js'></script><!-- Configura o slideshow -->
-	<script language="JavaScript" src="js/functions.js"></script><!-- Arquivo de funcoes-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guia Braille</title>
+  <meta name="description" content="Sistema web para auxiliar deficientes visuais no aprendizado de Braille, com áudio e jogos.">
+  <meta name="theme-color" content="#c00000">
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
-<div id='BodyHeader' class='headerfixedHeight'><!-- Div que contem todo menu -->
-	<div id='CentroMenu'><!-- Para centralizar o menu -->
-	<div id='LogoArea' onkeyup="emiteSomInfo('Menu/audio1')"><!-- Logo -->
-		<a href='index.html'>
-			<img id='Logo' src='img/logo.png'></img>
-		</a>
-	</div>
-	<div id='NavigationArea'><!-- Botoes menu -->
-		<ul class='navigationElements'>
-			<li><a href="projeto.html" onkeyup="emiteSomInfo('Menu/audio2')">Projeto</a></li>
-			<li><a href="braille.html" onkeyup="emiteSomInfo('Menu/audio3')">Braille</a></li>
-			<li><a href="jogo.html" onkeyup="emiteSomInfo('Menu/audio4')">Jogo</a></li>
-			<li><a href="teclado.html" onkeyup="emiteSomInfo('Menu/audio5')">Faça seu teclado</a></li>
-		<ul>
-	</div>
-	</div>
-</div>
-<div id='BodyContent'><!-- Corpo -->
-	<div id='slideApresentacao' onkeyup="emiteSomInfo('PaginaInicial/audio1')"><!-- Slideshow -->
-		<ul>
-			<li><a href="projeto.html"><img src='img/slide1.png'></img></a></li>
-			<li><a href="projeto.html"><img src='img/slide4.png'></a></img></li>
-			<li><a href="projeto.html"><img src='img/slide5.png'></a></img></li>
-		<ul>
-	</div>
-</div>
-<div id='BodyFooter'>
-	<div id="DivSomInfo">
-		<embed src='audio/PaginaInicial/intro.mp3' hidden=true autostart=true loop=false>
-	</div> <!-- Div escondido que toca os audios da emitoSomInfo -->
-	<div id='CentroFooter'><!-- Para centralizar o footer -->
-		<div class="PrimaryContent"><!-- Parte que fica sobre a linha -->
-			<div id='FooterNavigation'><!-- Conteudo do roda pé deve ficar dentro desse elemento -->
-				<a>Contato: GuiaBraille@gmail.com</a>
-			</div>
-		</div>
-		<div class="SecondaryContent"><!-- Parte inferior a linha -->
-			<div id='FooterNavigation'><!-- Conteudo do roda pé deve ficar dentro desse elemento -->
-				<a>Brasil</a> |
-				<a>Rio Grande do Sul</a> |
-				<a>Instituto Federal Sul-Rio-Grandense Campus Charqueadas</a>
-			</div>
-			<div id="LogoAndCopyright"><!-- Logo e Copyright respectivamente -->
-				<div id="CopyrightLogo"></div>
-				<div id="CopyrightText">
-                    © 2014 Guia Braille
-                </div>
-			</div>
-		</div>
-	</div>
-</div>
+<body data-page="inicio" data-intro="paginas/inicial/intro">
+  <div id="site-header"></div>
+  <main>
+    <section class="hero" aria-label="Apresentação">
+      <div class="container">
+        <div class="slideshow" role="region" aria-roledescription="carrossel" aria-label="Apresentação do Guia Braille" data-audio="paginas/inicial/audio1" tabindex="0">
+          <ul>
+            <li><a href="pages/projeto.html"><img src="assets/img/slide1.webp" alt="Guia Braille veio para facilitar a vida do deficiente visual" width="955" height="538"></a></li>
+            <li><a href="pages/projeto.html"><img src="assets/img/slide4.webp" alt="Chegou o Guia Braille. Comece a usar." width="956" height="538" loading="lazy"></a></li>
+            <li><a href="pages/projeto.html"><img src="assets/img/slide5.webp" alt="Conheça o projeto Guia Braille" width="955" height="539" loading="lazy"></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="chamada container">
+      <h1>Aprenda Braille de forma fácil, interativa e com áudio</h1>
+      <p>Um sistema web pensado para quem não enxerga: navegue pelo teclado, ouça as explicações e pratique com jogos.</p>
+      <div class="acoes">
+        <a class="btn" href="pages/braille.html">Conhecer o Braille</a>
+        <a class="btn secundario" href="pages/jogos.html">Ir para os jogos</a>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="assets/js/core/audio.js" defer></script>
+  <script src="assets/js/core/braille.js" defer></script>
+  <script src="assets/js/ui/layout.js" defer></script>
+  <script src="assets/js/ui/slideshow.js" defer></script>
 </body>
 </html>

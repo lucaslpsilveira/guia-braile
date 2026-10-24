@@ -1,0 +1,98 @@
+/* Telas dos jogos */
+.jogo { padding-block: clamp(20px, 5vw, 40px); }
+
+.jogo-painel {
+  background: var(--branco);
+  border: 2px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  padding: clamp(16px, 4vw, 32px);
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.jogo-status {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.jogo-pergunta {
+  font-size: clamp(3.5rem, 18vw, 7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 8px 0;
+  min-height: 1.2em;
+  color: var(--grafite);
+}
+.jogo-pergunta.conta { font-size: clamp(2.5rem, 12vw, 4.5rem); }
+
+.jogo-feedback {
+  min-height: 2.2em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.jogo-feedback.ok { color: var(--ok); }
+.jogo-feedback.erro { color: var(--erro); }
+
+.jogo-modo {
+  border: 2px solid var(--cinza-borda);
+  border-radius: var(--raio);
+  padding: 12px 16px;
+  margin: 0 0 20px;
+  text-align: left;
+}
+.jogo-modo legend { padding: 0 6px; font-weight: 600; }
+.jogo-modo label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--alvo-toque);
+  cursor: pointer;
+}
+.jogo-modo input { width: 22px; height: 22px; accent-color: var(--vermelho); }
+
+.jogo-controles { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
+
+.jogo-campo { display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; }
+.jogo-campo input {
+  width: 6em;
+  min-height: var(--alvo-toque);
+  font: inherit;
+  font-size: 1.4rem;
+  text-align: center;
+  border: 3px solid var(--cinza-borda);
+  border-radius: var(--raio);
+}
+
+.jogo-ajuda { font-size: 1rem; color: #4a4a4a; margin-top: 12px; }
+
+/* Ranking */
+.ranking-form { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0; }
+.ranking-form input {
+  flex: 1 1 180px;
+  min-height: var(--alvo-toque);
+  font: inherit;
+  padding: 0 14px;
+  border: 3px solid var(--cinza-borda);
+  border-radius: var(--raio);
+}
+.ranking-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  counter-reset: pos;
+}
+.ranking-lista li {
+  counter-increment: pos;
+  display: flex;
+  gap: 12px;
+  padding: 10px 6px;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+.ranking-lista li::before { content: counter(pos) "º"; font-weight: 700; min-width: 2.2em; }
+.ranking-lista .nome { flex: 1; }
+.ranking-lista .pts { font-weight: 700; }

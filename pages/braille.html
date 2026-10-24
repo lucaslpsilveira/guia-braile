@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-base="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Braille | Guia Braille</title>
+  <meta name="description" content="História, funcionamento e prática do sistema Braille.">
+  <meta name="theme-color" content="#c00000">
+  <link rel="icon" href="../assets/img/logo.png">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body data-page="braille" data-intro="paginas/braille/intro">
+  <div id="site-header"></div>
+  <main>
+    <section class="titulo-pagina">
+      <div class="container">
+        <h1>Contextualização sobre o sistema Braille</h1>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="paginas-braille-audio1-t">
+      <div class="container secao-grade">
+        <div>
+          <h2 id="paginas-braille-audio1-t">História</h2>
+          <p>O Sistema Braille foi criado por Louis Braille, deficiente visual que com dezoito anos tornou-se professor do Instituto de Cegos de Paris. Ao ouvir falar de um sistema de pontos inventado por um oficial para ler mensagens durante a noite em lugares onde seria perigoso acender a luz, fez algumas adaptações no sistema de pontos em alto relevo e, em 1829, criou a simbologia Braille.</p>
+          <button type="button" class="btn secundario btn-ouvir" data-audio="paginas/braille/audio1">Ouvir esta explicação</button>
+        </div>
+        <figure><img src="../assets/img/louis-braille.webp" alt="Retrato de Louis Braille" loading="lazy"></figure>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="paginas-braille-audio2-t">
+      <div class="container secao-grade inverter">
+        <div>
+          <h2 id="paginas-braille-audio2-t">Como funciona?</h2>
+          <p>Braille é uma linguagem de leitura e escrita tátil usada por deficientes visuais. Esta linguagem é composta por 63 sinais formados por pontos que seguem um padrão. Os pontos representam os caracteres, que são marcados em alto relevo para que o deficiente visual consiga identificá-los através do tato.</p>
+          <p>Através de um padrão de duas colunas compostas por três pontos cada, diferentes combinações em alto relevo são formadas, criando assim os caracteres Braille.</p>
+          <button type="button" class="btn secundario btn-ouvir" data-audio="paginas/braille/audio2">Ouvir esta explicação</button>
+        </div>
+        <figure><img src="../assets/img/leitura-braille.webp" alt="Pessoa lendo Braille com a ponta dos dedos" loading="lazy"></figure>
+      </div>
+    </section>
+    <section class="secao" aria-labelledby="paginas-braille-audio3-t">
+      <div class="container secao-grade">
+        <div>
+          <h2 id="paginas-braille-audio3-t">Exemplo</h2>
+          <p>Para compreender melhor, analise o exemplo da letra A na simbologia Braille: ela é composta por um alto relevo na coluna 1 e linha 1, sendo que os demais pontos ficam vazios. Ou seja, a letra A é constituída por apenas um ponto em alto relevo. Simples, não?</p>
+          <button type="button" class="btn secundario btn-ouvir" data-audio="paginas/braille/audio3">Ouvir esta explicação</button>
+        </div>
+        <figure><img src="../assets/img/simbologia.webp" alt="Esquema com linhas, colunas e numeração dos seis pontos da cela Braille, e a letra A representada pelo ponto 1" loading="lazy"></figure>
+      </div>
+    </section>
+    <section class="secao escura" aria-labelledby="pratica-t">
+      <div class="container pratica">
+        <h2 id="pratica-t">Veja na prática</h2>
+        <p>Procure alguma simbologia em Braille no seu teclado adaptado e pressione para descobrir a qual letra ela corresponde. No celular, use o teclado de 6 pontos abaixo.</p>
+        <label for="editor" class="sr-only">Área de prática</label>
+        <textarea id="editor" rows="3" spellcheck="false" autocomplete="off" aria-describedby="pratica-aviso"></textarea>
+        <div class="pratica-resultado">
+          <div class="pratica-letra" id="pratica-letra" aria-hidden="true">?</div>
+          <div id="pratica-cela"></div>
+          <p id="pratica-aviso" role="status" aria-live="polite"></p>
+        </div>
+        <h3>Teclado Braille de 6 pontos</h3>
+        <div id="teclado-pratica"></div>
+      </div>
+    </section>
+    <section class="secao" id="alfabeto" aria-labelledby="alfabeto-t">
+      <div class="container">
+        <h2 id="alfabeto-t">O alfabeto em Braille</h2>
+        <p>Os pontos em vermelho estão em relevo. Cada cela tem dois pontos de largura e três de altura, numerados de 1 a 6.</p>
+        <ul class="alfabeto" id="alfabeto-grade"></ul>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../assets/js/core/audio.js" defer></script>
+  <script src="../assets/js/core/braille.js" defer></script>
+  <script src="../assets/js/ui/layout.js" defer></script>
+  <script src="../assets/js/ui/braille-keyboard.js" defer></script>
+  <script src="../assets/js/pages/braille.js" defer></script>
+</body>
+</html>
