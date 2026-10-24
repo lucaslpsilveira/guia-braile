@@ -59,14 +59,12 @@ Vários jogos aparecem no menu como "em breve". A proposta previa expandir o sis
 - Navegação completa pelo teclado, com foco visível, link "Pular para o conteúdo", HTML semântico e anúncios por `aria-live` para leitores de tela.
 - Os jogos dão retorno sonoro de acerto e erro (e vibração no celular).
 
-### Formas de responder nos jogos
+### Como jogar
 
-| Modo | Como funciona |
-|---|---|
-| **Teclado adaptado** | A pessoa pressiona a tecla que tem o símbolo Braille colado (modo original do projeto). É o padrão no computador. |
-| **Teclado Braille de 6 pontos** | Na tela, toque nos pontos e confirme. No teclado físico, pressione juntas as teclas **F D S** (pontos 1, 2, 3) e **J K L** (pontos 4, 5, 6). É o padrão no celular. |
+- **Adivinhe a Letra:** pressione **Enter** para começar. O sistema fala uma letra e você responde pressionando a tecla correspondente no teclado adaptado. São 10 rodadas.
+- **Matemática iniciante:** pressione **F2** para começar. O sistema fala a conta, e você digita o resultado e confirma.
 
-O ranking de cada jogo fica salvo no navegador (`localStorage`).
+Os jogos usam o teclado físico, como na versão original de 2014. Só o layout foi adaptado para telas pequenas.
 
 ## Tecnologias
 
@@ -87,15 +85,12 @@ HTML, CSS e JavaScript puros, sem frameworks, sem etapa de build e sem back-end:
     ├── css/                # base, layout, components, games (importados por main.css)
     ├── js/
     │   ├── core/           # audio.js e braille.js (alfabeto, teclas)
-    │   ├── ui/             # layout, slideshow e teclado Braille de 6 pontos
-    │   ├── games/          # engine.js (motor comum) e um arquivo por jogo
-    │   ├── pages/          # scripts específicos de páginas
-    │   └── storage/        # ranking.js
+    │   ├── ui/             # layout, slideshow e teclado Braille de 6 pontos (página Braille)
+    │   ├── games/          # lógica de cada jogo (original de 2014)
+    │   └── pages/          # scripts específicos de páginas
     ├── img/
     └── audio/              # menu/, paginas/ e letras/
 ```
-
-Para criar um novo jogo, basta uma página em `pages/` e um arquivo em `assets/js/games/` que chame `GB.iniciarJogo({...})` informando como gerar cada pergunta.
 
 ## Como executar
 

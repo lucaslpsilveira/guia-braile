@@ -1,98 +1,84 @@
-/* Telas dos jogos */
-.jogo { padding-block: clamp(20px, 5vw, 40px); }
+/* Páginas dos jogos (visual original: fundo preto, letra grande), agora responsivo */
+#corpoJogos {
+  display: block;
+  background: #000;
+  color: #f1f1f1;
+  min-height: 100vh;
+}
 
-.jogo-painel {
-  background: var(--branco);
-  border: 2px solid var(--cinza-borda);
-  border-radius: var(--raio);
-  padding: clamp(16px, 4vw, 32px);
-  max-width: 640px;
-  margin-inline: auto;
+#menuVoltar {
+  padding: 15px;
+}
+#menuVoltar a { display: inline-block; border-radius: 50%; }
+#imgVoltar {
+  width: clamp(48px, 12vw, 70px);
+  height: clamp(48px, 12vw, 70px);
+}
+
+#tituloJogos {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 var(--gutter) 40px;
   text-align: center;
 }
 
-.jogo-status {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-  margin-bottom: 12px;
+#tituloJogos h2 {
+  font-size: clamp(2.2rem, 11vw, 5rem);
+  color: #f1f1f1;
+  font-weight: 400;
+  margin-bottom: .3em;
 }
 
-.jogo-pergunta {
-  font-size: clamp(3.5rem, 18vw, 7rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin: 8px 0;
-  min-height: 1.2em;
-  color: var(--grafite);
+#tituloJogos p {
+  font-size: clamp(1.1rem, 4vw, 2.5rem);
+  color: #a9a9a9;
 }
-.jogo-pergunta.conta { font-size: clamp(2.5rem, 12vw, 4.5rem); }
+#tituloJogos p.dica { color: #f1f1f1; font-weight: 600; }
 
-.jogo-feedback {
-  min-height: 2.2em;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 12px;
+#condicao {
+  min-height: 1.3em;
+  padding-top: 20px;
 }
-.jogo-feedback.ok { color: var(--ok); }
-.jogo-feedback.erro { color: var(--erro); }
 
-.jogo-modo {
-  border: 2px solid var(--cinza-borda);
-  border-radius: var(--raio);
-  padding: 12px 16px;
-  margin: 0 0 20px;
-  text-align: left;
+#letraSorteada {
+  color: #f1f1f1;
+  font-size: clamp(6rem, 38vw, 9.4rem);
+  line-height: 1.05;
+  margin: 0;
 }
-.jogo-modo legend { padding: 0 6px; font-weight: 600; }
-.jogo-modo label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+/* Jogo de matemática: campo e botão */
+#formChutar { margin: 0 auto; }
+#inputChutar { margin: 0 auto; border-collapse: separate; border-spacing: 8px; }
+#inputChutar td { vertical-align: middle; }
+#inputChutar p { margin: 0; font-size: clamp(1rem, 4vw, 1.6rem); color: #f1f1f1; }
+
+#chute {
+  font: inherit;
+  font-size: 1.6rem;
+  width: 4em;
   min-height: var(--alvo-toque);
-  cursor: pointer;
+  text-align: center;
+  border-radius: 8px;
+  border: 3px solid #6f6f6f;
 }
-.jogo-modo input { width: 22px; height: 22px; accent-color: var(--vermelho); }
 
-.jogo-controles { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
-
-.jogo-campo { display: flex; gap: 10px; justify-content: center; margin-bottom: 12px; }
-.jogo-campo input {
-  width: 6em;
-  min-height: var(--alvo-toque);
+#btnEnviar {
   font: inherit;
   font-size: 1.4rem;
-  text-align: center;
-  border: 3px solid var(--cinza-borda);
-  border-radius: var(--raio);
-}
-
-.jogo-ajuda { font-size: 1rem; color: #4a4a4a; margin-top: 12px; }
-
-/* Ranking */
-.ranking-form { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 16px 0; }
-.ranking-form input {
-  flex: 1 1 180px;
   min-height: var(--alvo-toque);
-  font: inherit;
-  padding: 0 14px;
-  border: 3px solid var(--cinza-borda);
-  border-radius: var(--raio);
+  padding: 0 20px;
+  background: #222222;
+  color: #fff;
+  border: 3px solid #6f6f6f;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.ranking-lista {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  counter-reset: pos;
+#btnEnviar:hover { background: #3a3a3a; }
+
+@media (max-width: 520px) {
+  /* "Chute um valor:" acima do campo, para caber em telas estreitas */
+  #inputChutar, #inputChutar tbody, #inputChutar tr { display: block; }
+  #inputChutar td { display: inline-block; }
+  #inputChutar td:first-child { display: block; }
 }
-.ranking-lista li {
-  counter-increment: pos;
-  display: flex;
-  gap: 12px;
-  padding: 10px 6px;
-  border-bottom: 1px solid var(--cinza-borda);
-}
-.ranking-lista li::before { content: counter(pos) "º"; font-weight: 700; min-width: 2.2em; }
-.ranking-lista .nome { flex: 1; }
-.ranking-lista .pts { font-weight: 700; }
